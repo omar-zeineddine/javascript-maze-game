@@ -14,6 +14,9 @@ window.onload = function () {
   let game_state = "start";
   let score = 0;
 
+  // example div - result output
+  const result = document.querySelector(".example");
+
   function startGame() {
     end.addEventListener("mouseover", win);
     game_state = "active";
@@ -30,6 +33,7 @@ window.onload = function () {
         colorBoundaries("#cd4439");
         score -= 10;
         status.innerHTML = `You lost<br> Score: ${score}`;
+        result.innerHTML = `${score}`;
         game_state = "lost";
       }
     });
@@ -40,6 +44,7 @@ window.onload = function () {
       colorBoundaries("#4aa96c");
       score += 5;
       status.innerHTML = `You won<br> Score: ${score}`;
+      result.innerHTML = `${score}`;
       game_state = "start";
     }
   }
@@ -48,6 +53,7 @@ window.onload = function () {
   function colorBoundaries(color) {
     for (let i = 0; i < maze_borders.length; i++) {
       maze_borders[i].style.background = color;
+      result.style.background = color;
     }
   }
 
@@ -55,6 +61,7 @@ window.onload = function () {
   function reset() {
     score = 0;
     status.innerHTML = "Game restarted";
+    result.innerHTML = `${score}`;
   }
 
   // user message when cursor is out of bounds

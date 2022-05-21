@@ -56,4 +56,17 @@ window.onload = function () {
     score = 0;
     status.innerHTML = "Game restarted";
   }
+
+  // user message when cursor is out of bounds
+  function outOfBounds() {
+    status.innerHTML =
+      "You left the maze, start again by hovering over S<br> to restart game score, click on S";
+    colorBoundaries("#cd4439");
+    game_state = "start";
+  }
+
+  // Event Listeners
+  start.addEventListener("mouseover", startGame);
+  start.addEventListener("click", reset);
+  game.addEventListener("mouseleave", outOfBounds);
 };

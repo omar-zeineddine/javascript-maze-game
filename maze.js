@@ -75,8 +75,11 @@ window.onload = function () {
   // restart game
   function reset() {
     score = 0;
+    laps = [];
     status.innerHTML = "Game restarted";
     result.innerHTML = `${score}`;
+    lastLap.innerHTML = ``;
+    bestLap.innerHTML = ``;
   }
 
   // user message when cursor is out of bounds

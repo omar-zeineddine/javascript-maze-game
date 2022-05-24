@@ -14,10 +14,18 @@ window.onload = function () {
   let game_state = "start";
   let score = 0;
 
+  // timers
+  const bestLap = document.getElementById("best-lap");
+  const lastLap = document.getElementById("last-lap");
+
+  let t0, t1;
+  let laps = [];
+
   // example div - result output
   const result = document.querySelector(".example");
 
   function startGame() {
+    t0 = new Date();
     end.addEventListener("mouseover", win);
     game_state = "active";
     status.innerHTML = "Avoid touching the maze walls";
@@ -46,6 +54,13 @@ window.onload = function () {
       status.innerHTML = `You won<br> Score: ${score}`;
       result.innerHTML = `${score}`;
       game_state = "start";
+      t1 = new Date();
+      let lap = (t1 - t0) / 1000;
+      laps.push(lap);
+      let best = Math.min(...laps);
+      console.log(laps);
+      lastLap.innerHTML = ` ${lap}s`;
+      bestLap.innerHTML = ` ${best}s`;
     }
   }
 

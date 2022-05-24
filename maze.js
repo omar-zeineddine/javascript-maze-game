@@ -20,11 +20,21 @@ window.onload = function () {
 
   let t0, t1;
   let laps = [];
+  let seconds = 0;
+  const currentLap = document.getElementById("current-lap");
+
+  function incrementSeconds() {
+    seconds += 1;
+    currentLap.innerHTML = `${seconds}`;
+  }
+
+  const timer = setInterval(incrementSeconds, 1000);
 
   // example div - result output
   const result = document.querySelector(".example");
 
   function startGame() {
+    seconds = 0;
     t0 = new Date();
     end.addEventListener("mouseover", win);
     game_state = "active";
@@ -61,6 +71,8 @@ window.onload = function () {
       console.log(laps);
       lastLap.innerHTML = ` ${lap}s`;
       bestLap.innerHTML = ` ${best}s`;
+      currentLap.innerHTML = ` `;
+      seconds = 0;
     }
   }
 
@@ -80,6 +92,7 @@ window.onload = function () {
     result.innerHTML = `${score}`;
     lastLap.innerHTML = ``;
     bestLap.innerHTML = ``;
+    seconds = 0;
   }
 
   // user message when cursor is out of bounds
